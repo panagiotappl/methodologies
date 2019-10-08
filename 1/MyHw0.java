@@ -9,26 +9,21 @@ import java.util.HashMap;
 public class MyHw0 {
     public static void main(String [] args) {
         Instant start = Instant.now();
-        HashMap<String, HashMap<String, Integer>> map = new HashMap<>();
+        HashMap<Integer, HashMap<Integer, Integer>> map = new HashMap<>();
         ArrayList<String> list = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
             String line;
             while ((line = br.readLine()) != null) {
                 list.add(line);
                 int idx = line.indexOf("|");
-                String a = line.substring(0, idx);
-                String b = line.substring(idx + 1, line.length());
-                HashMap<String, Integer> items = map.get(a);
-                // When X doesn't exist
+                Integer a = Integer.parseInt(line.substring(0, idx));
+                Integer b = Integer.parseInt(line.substring(idx + 1, line.length()));
+                HashMap<Integer, Integer> items = map.get(a);
                 if(items == null) {
                     items = new HashMap<>();
-                    // Create first Y with index 0
                     items.put(b, 1);
-                    // Put X:{Y: 0}
                     map.put(a, items);
-                //When X exists
                 } else {
-                    // If Y hasn't been added already
                     if(items.get(b) == null) {
                         Integer length = items.size();
                         items.put(b, length + 1);
@@ -38,11 +33,10 @@ public class MyHw0 {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //System.out.println(list);
         list.forEach((i)->{
                 int idx = i.indexOf("|");
-                String a = i.substring(0, idx);
-                String b = i.substring(idx + 1, i.length());
+                Integer a = Integer.parseInt(i.substring(0, idx));
+                Integer b = Integer.parseInt(i.substring(idx + 1, i.length()));
                 System.out.println(a + "|" + b + "[ " + (map.get(a)).get(b) +  " of " + map.get(a).size() +  " ]");
             }
         );
