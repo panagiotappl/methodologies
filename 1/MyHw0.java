@@ -37,7 +37,8 @@ public class MyHw0 {
                 int idx = i.indexOf("|");
                 Integer a = Integer.parseInt(i.substring(0, idx));
                 Integer b = Integer.parseInt(i.substring(idx + 1, i.length()));
-                System.out.println(a + "|" + b + "[ " + (map.get(a)).get(b) +  " of " + map.get(a).size() +  " ]");
+                HashMap<Integer, Integer> m = map.get(a);
+                System.out.println(a + "|" + b + "[ " + m.get(b) +  " of " + m.size() +  " ]");
             }
         );
         Instant end = Instant.now();
