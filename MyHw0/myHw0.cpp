@@ -36,6 +36,6 @@ int main() {
     cout << s << endl;
   }
   seconds = ( clock() - start ) / (double) CLOCKS_PER_SEC;
-  cerr << seconds << endl;
+  cerr << seconds << "S" << endl;
   return 0;
 }
