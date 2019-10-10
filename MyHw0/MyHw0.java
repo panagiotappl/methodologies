@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.Duration;
@@ -7,9 +6,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.lang.StringBuilder;
 
 public class MyHw0 {
@@ -18,12 +15,12 @@ public class MyHw0 {
     HashMap<Integer, HashMap<Integer, Integer>> map = new HashMap<>();
     ArrayList<String> list = new ArrayList<>();
     try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-      String line;
-      while ((line = br.readLine()) != null) {
-        int idx = line.indexOf("|");
-        Integer a = Integer.parseInt(line.substring(0, idx));
-        Integer b = Integer.parseInt(line.substring(idx + 1, line.length()));
-        list.add(line);
+      String l;
+      while ((l = br.readLine()) != null) {
+        int i = l.indexOf("|");
+        Integer a = Integer.parseInt(l.substring(0, i));
+        Integer b = Integer.parseInt(l.substring(i + 1, l.length()));
+        list.add(l);
         HashMap<Integer, Integer> items = map.get(a);
         if(items == null) {
           items = new HashMap<>();
@@ -41,17 +38,23 @@ public class MyHw0 {
       e.printStackTrace();
     }
     OutputStream out = new BufferedOutputStream ( System.out );
-    list.forEach((i)->{
-      int idx = i.indexOf("|");
-      Integer a = Integer.parseInt(i.substring(0, idx));
-      Integer b = Integer.parseInt(i.substring(idx + 1, i.length()));
+    list.forEach((l)->{
+      int i = l.indexOf("|");
+      Integer a = Integer.parseInt(l.substring(0, i));
+      Integer b = Integer.parseInt(l.substring(i + 1, l.length()));
       HashMap<Integer, Integer> m = map.get(a);
       try {
-        out.write((a + "|" + b + "[" + m.get(b) +  " of " + m.size() +  "]").getBytes());
+	       StringBuilder s = new StringBuilder(a + "|" + b + "[" + m.get(b) +  " of " + m.size() +  "]\n");
+         out.write((s.toString()).getBytes());
       } catch (IOException e){
         e.printStackTrace();
       }
     });
+    try {
+      out.close();
+    } catch (IOException e){
+      e.printStackTrace();
+    }
     Instant end = Instant.now();
     System.err.println(Duration.between(start, end));
   }
