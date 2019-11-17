@@ -1,2 +1,7 @@
-./MyHw0/data/*
-./MyHw0/MyHw0.class
+MyHw0/data/*
+MyHw0/MyHw0.class
+MyHw1/aspect-j/
+MyHw1/java-proxy/
+MyHw1/java-reflection/
+*/.vscode
+*/*.class
