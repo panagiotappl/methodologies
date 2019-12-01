@@ -37,5 +37,7 @@ public class Example1 {
         
         ((A) c).meth(a);
         c.meth((A) c);
+        a.meth(d);
+        a.meth(e);
      }
 }
