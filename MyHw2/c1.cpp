@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
     int minutes, hours;
     start = clock();
 
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < 15; i++){
         run(n);
     }
 

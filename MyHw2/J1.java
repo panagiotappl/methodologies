@@ -73,7 +73,7 @@ public class J1 {
         run(n);
 
         Instant start = Instant.now();
-        for(int i = 0; i < 5; i ++){
+        for(int i = 0; i < 15; i ++){
             run(n);
         }
         Instant end = Instant.now();
