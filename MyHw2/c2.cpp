@@ -15,12 +15,12 @@ Node* createNode() {
     return node;
 }
 
-long sum(Node* first, Node** node) {
+long sum(Node* first) {
+    Node *node = first;
     long counter = 0;
-    *node = first;
-    while (*node != NULL) { 
-        counter++;
-        *node = (*node)->next;
+    while (node != NULL) { 
+        counter += node->i;
+        node = node->next;
     }
     return counter;
 }
@@ -30,7 +30,7 @@ void run() {
     Node* last = node;
     for (int i = 0; i < 20000000; i++) {
         Node* n = new Node();
-        n->i = i % 8;
+        n->i = i;
         last->next = n;
         last = n;
     }
@@ -46,7 +46,6 @@ void run() {
             } else {
                 node->next = NULL;
             }
-            node = node->next;
             delete tmp;
             deleted++;
         } else {
@@ -56,12 +55,13 @@ void run() {
     }
     cout << "Created 20000000 nodes" << endl;
     cout << "Deleted " << deleted << " nodes" << endl;
-    cout << 200000000 - deleted << " nodes left" << endl;
     long counter = 0;
-    for(int j = 0; j < 10000; j++) {
-        sum(first, &node);
+    for(int j = 0; j < 1000; j++) {
+        long sum1 = sum(first);
+        if (sum1 > counter) {
+            counter = sum1;
+        }
     }
-    counter = sum(first, &node);
     
     cout << "Sum is " << counter << endl;
     node = first;

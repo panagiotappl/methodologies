@@ -7,11 +7,11 @@ class Node {
 }
 
 public class J2 {
-    public static long sum (Node first, Node node) {
+    public static long sum (Node first) {
         long counter = 0;
-        node = first;
+        Node node = first;
         while (node != null) {
-            counter = counter + 1;
+            counter += node.i;
             node = node.next;
         }
         return counter;
@@ -22,7 +22,7 @@ public class J2 {
         Node last = node;
         for(int i = 0; i < 20000000; i ++){
             Node n = new Node();
-            n.i = 1 % 8;
+            n.i = i;
             last.next = n;
             last = n;
         }
@@ -37,8 +37,7 @@ public class J2 {
                 } else {
                     node.next = null;
                 }
-                node = node.next;
-                deleted = deleted + 1;
+                deleted++;
             } else {
                 node = node.next;
             }
@@ -47,10 +46,12 @@ public class J2 {
         System.out.println("Deleted " + deleted + " nodes");
 
         long counter = 0;
-        for (int j = 0; j < 10000; j++) {
-            sum(first, node);
+        for (int j = 0; j < 1000; j++) {
+            long sum1 = sum(first);
+            if (sum1 > counter) {
+                counter = sum1;
+            }
         }
-        counter = sum(first, node);
         System.out.println("Sum is " + counter);
         node = first;
     }
